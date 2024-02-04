@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SocketProvider } from "../context/SocketProvider";
+// import { twMerge } from "tailwind-merge";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <SocketProvider>
+      <html lang="en">
+        <head />
+        <body
+          className={
+            // twMerge(
+            inter.className
+            // , "")
+          }
+        >
+          {children}
+        </body>
+      </html>
+    </SocketProvider>
   );
 }
